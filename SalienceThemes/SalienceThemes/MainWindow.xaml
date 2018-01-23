@@ -7,6 +7,23 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Content="License Path " />
+            <TextBox Grid.Column="1" Grid.Row="0" />
+            <Label Grid.Column="0" Grid.Row="1" Content="Data Path " />
+            <TextBox Grid.Column="1" Grid.Row="1" />
+            <Label Grid.Column="0" Grid.Row="2" Content="Input" />
+            <TextBox Grid.ColumnSpan="2" Grid.Row="3" Text="Paste your text here." TextWrapping="Wrap" />
+        </Grid>
     </Grid>
 </Window>
