@@ -21,9 +21,13 @@ namespace SalienceThemes
     /// </summary>
     public partial class MainWindow : Window
     {
+        PathViewModel _pathViewModel;
+
         public MainWindow()
         {
             InitializeComponent();
+            _pathViewModel = new PathViewModel();
+            this.DataContext = _pathViewModel;
         }
     }
 }

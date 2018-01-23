@@ -13,9 +13,8 @@ namespace SalienceThemes.ViewModels
     {
         public PathViewModel()
         {
-            _path = new Path { LicensePath = "", DataPath = "" };
+            _path = new Path { LicensePath = "C:/Program Files (x86)/Lexalytics/License.v5", DataPath = "C:/Program Files (x86)/Lexalytics/data" };
         }
-
         Path _path;
         int _count = 0;
 
