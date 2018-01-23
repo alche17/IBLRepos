@@ -17,13 +17,16 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="100" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Label Grid.Column="0" Grid.Row="0" Content="License Path " />
-            <TextBox Grid.Column="1" Grid.Row="0" />
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding LicensePath}" />
             <Label Grid.Column="0" Grid.Row="1" Content="Data Path " />
-            <TextBox Grid.Column="1" Grid.Row="1" />
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding DataPath}" />
             <Label Grid.Column="0" Grid.Row="2" Content="Input" />
             <TextBox Grid.ColumnSpan="2" Grid.Row="3" Text="Paste your text here." TextWrapping="Wrap" />
+            <Button Grid.Column="0" Grid.Row="4" Name="ButtonProcess" Content="Process" />
+            <Button Grid.Column="1" Grid.Row="4" Name="ButtonSave" Content="Save paths" Command="{Binding UpdateArtistName}" />
         </Grid>
     </Grid>
 </Window>
