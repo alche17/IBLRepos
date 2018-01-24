@@ -46,18 +46,42 @@
         <Label Grid.Row="4" Grid.Column="3" Content="Sentiment" />
         <Label Grid.Row="4" Grid.Column="4" Content="Evidence" />
         
-        <!-- Themes Text Blocks -->
-        <ListBox Name="lbThemesList" Grid.Row="5" ItemsSource="{Binding Themes}" SelectedItem="{Binding Theme,Mode=TwoWay}">
+        <!-- Theme Property List Boxes -->
+        <ListBox Name="lbNameList" Grid.Row="5" ItemsSource="{Binding Themes}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Theme.Name, Mode=TwoWay}" />
+                    <TextBlock Text="{Binding Name, Mode=TwoWay}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <TextBlock TextWrapping="Wrap" Grid.Row="5" Grid.Column="1" />
-        <TextBlock TextWrapping="Wrap" Grid.Row="5" Grid.Column="2" />
-        <TextBlock TextWrapping="Wrap" Grid.Row="5" Grid.Column="3" />
-        <TextBlock TextWrapping="Wrap" Grid.Row="5" Grid.Column="4" />
+        <ListBox Name="lbScoreList" Grid.Row="5" Grid.Column="1" ItemsSource="{Binding Themes}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Score, Mode=TwoWay}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox Name="lbTypeList" Grid.Row="5" Grid.Column="2" ItemsSource="{Binding Themes}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Type, Mode=TwoWay}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox Name="lbSentimentList" Grid.Row="5" Grid.Column="3" ItemsSource="{Binding Themes}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Sentiment, Mode=TwoWay}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox Name="lbEvidenceList" Grid.Row="5" Grid.Column="4"  ItemsSource="{Binding Themes}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Evidence, Mode=TwoWay}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
         <!-- Buttons -->
         <Button Margin="10" Grid.Column="3" Grid.Row="6" Name="ButtonProcess" Content="Process" />
