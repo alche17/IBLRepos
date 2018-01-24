@@ -3,11 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:c="clr-namespace:SalienceThemes.Models"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Window.Resources>
-        <c:Themes x:Key="ThemesData" />
         <Style TargetType="TextBlock">
             <Setter Property="Background" Value="LightGray" />
         </Style>
@@ -49,10 +47,10 @@
         <Label Grid.Row="4" Grid.Column="4" Content="Evidence" />
         
         <!-- Themes Text Blocks -->
-        <ListBox Name="lbThemesList" ItemsSource="{Binding Source={StaticResource ThemesData}}" Grid.Row="5">
+        <ListBox Name="lbThemesList" Grid.Row="5" ItemsSource="{Binding Themes}" SelectedItem="{Binding Theme,Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="" />
+                    <TextBlock Text="{Binding Theme.Name, Mode=TwoWay}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

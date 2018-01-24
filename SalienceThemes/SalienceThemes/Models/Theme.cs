@@ -1,6 +1,23 @@
-﻿
+﻿using System.Collections.ObjectModel;
+
 namespace SalienceThemes.Models
 {
+    public class Themes : ObservableCollection<Theme>
+    {
+        public Themes()
+        {
+            loadData();
+        }
+
+        private void loadData()
+        {
+            this.Add(new Theme("Name 1", "Score 1", "Type 1", "Sentiment 1", "Evidence 1"));
+            this.Add(new Theme("Name 2", "Score 2", "Type 2", "Sentiment 2", "Evidence 2"));
+            this.Add(new Theme("Name 3", "Score 3", "Type 3", "Sentiment 3", "Evidence 3"));
+            this.Add(new Theme("Name 4", "Score 4", "Type 4", "Sentiment 4", "Evidence 4"));
+        }
+    }
+
     public class Theme
     {
         private string _name;
