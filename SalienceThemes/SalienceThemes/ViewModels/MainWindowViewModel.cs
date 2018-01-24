@@ -3,6 +3,7 @@ using SalienceThemes.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace SalienceThemes.ViewModels
 {
@@ -33,78 +34,6 @@ namespace SalienceThemes.ViewModels
             get { return _themes; }
             set { _themes = value; }
         }
-
-        //#region ThemeMembers
-        //public Theme Theme
-        //{
-        //    get { return _theme; }
-        //    set { _theme = value; }
-        //}
-        //public string Name
-        //{
-        //    get { return Theme.Name; }
-        //    set
-        //    {
-        //        if (Theme.Name != value)
-        //        {
-        //            Theme.Name = value;
-        //            RaisePropertyChanged("LicensePath");
-        //        }
-        //    }
-        //}
-
-        //public string Score
-        //{
-        //    get { return Theme.Score; }
-        //    set
-        //    {
-        //        if (Theme.Score != value)
-        //        {
-        //            Theme.Score = value;
-        //            RaisePropertyChanged("LicensePath");
-        //        }
-        //    }
-        //}
-
-        //public string Type
-        //{
-        //    get { return Theme.Type; }
-        //    set
-        //    {
-        //        if (Theme.Type != value)
-        //        {
-        //            Theme.Type = value;
-        //            RaisePropertyChanged("LicensePath");
-        //        }
-        //    }
-        //}
-
-        //public string Sentiment
-        //{
-        //    get { return Theme.Sentiment; }
-        //    set
-        //    {
-        //        if (Theme.Sentiment != value)
-        //        {
-        //            Theme.Sentiment = value;
-        //            RaisePropertyChanged("LicensePath");
-        //        }
-        //    }
-        //}
-
-        //public string Evidence
-        //{
-        //    get { return Theme.Evidence; }
-        //    set
-        //    {
-        //        if (Theme.Evidence != value)
-        //        {
-        //            Theme.Evidence = value;
-        //            RaisePropertyChanged("LicensePath");
-        //        }
-        //    }
-        //}
-        //#endregion
 
         #region PathMembers
         public Path Path
@@ -167,6 +96,23 @@ namespace SalienceThemes.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #region ClearButton
+        public void ClearExecute()
+        {
+            DataPath = LicensePath = InputText = String.Empty;
+        }
+
+        public bool CanClearExecute()
+        {
+            return true;
+        }
+
+        public ICommand Clear
+        {
+            get { return new RelayCommand(ClearExecute, CanClearExecute); }
+        }
+        #endregion
 
         public void AnalyseText()
         {

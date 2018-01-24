@@ -9,8 +9,6 @@ namespace SalienceThemes
         readonly Func<Boolean> _canExecute;
         readonly Action _execute;
 
-        public RelayCommand(Action execute) : this(execute, null){ }
-
         public RelayCommand(Action execute, Func<Boolean> canExecute)
         {
             _execute = execute ?? throw new ArgumentNullException("execute");
