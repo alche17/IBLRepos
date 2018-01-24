@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace SalienceThemes.Models
 {
-    class Path
+    public class Path
     {
         string _licensePath;
         string _dataPath;
