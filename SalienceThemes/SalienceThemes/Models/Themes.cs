@@ -1,15 +1,6 @@
-﻿using System.Collections.ObjectModel;
-
+﻿
 namespace SalienceThemes.Models
 {
-    public class Themes : ObservableCollection<Theme>
-    {
-        public Themes() : base()
-        {
-            Add(new Theme("Theme", "Score", "Type", "Sentiment", "Evidence"));
-        }
-    }
-
     public class Theme
     {
         private string _name;
