@@ -38,7 +38,7 @@
 
         <!-- Text Input Field -->
         <Label Grid.Row="2" Content="Input" />
-        <TextBox Grid.ColumnSpan="5" Grid.Row="3" Text="{Binding InputText}" TextWrapping="Wrap" />
+        <TextBox Grid.ColumnSpan="5" Grid.Row="3" Text="{Binding InputText, Mode=TwoWay}" AcceptsReturn="True" TextWrapping="Wrap" />
         
         <!-- Themes Text Block Labels -->
         <Label Grid.Row="4" Content="Themes" />
@@ -46,40 +46,25 @@
         <Label Grid.Row="4" Grid.Column="2" Content="Type" />
         <Label Grid.Row="4" Grid.Column="3" Content="Sentiment" />
         <Label Grid.Row="4" Grid.Column="4" Content="Evidence" />
-        
+
         <!-- Theme Property List Boxes -->
-        <ListBox Name="lbNameList" Grid.Row="5" ItemsSource="{Binding Themes}">
+        <ListBox Name="lbNameList" Grid.Row="5" Grid.ColumnSpan="5" ItemsSource="{Binding Themes}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name, Mode=TwoWay}" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <ListBox Name="lbScoreList" Grid.Row="5" Grid.Column="1" ItemsSource="{Binding Themes}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Score, Mode=TwoWay}" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <ListBox Name="lbTypeList" Grid.Row="5" Grid.Column="2" ItemsSource="{Binding Themes}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Type, Mode=TwoWay}" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <ListBox Name="lbSentimentList" Grid.Row="5" Grid.Column="3" ItemsSource="{Binding Themes}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Sentiment, Mode=TwoWay}" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <ListBox Name="lbEvidenceList" Grid.Row="5" Grid.Column="4"  ItemsSource="{Binding Themes}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Evidence, Mode=TwoWay}" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Name, Mode=TwoWay}" />
+                        <TextBlock Grid.Column="1" Text="{Binding Score, Mode=TwoWay}" />
+                        <TextBlock Grid.Column="2" Text="{Binding Type, Mode=TwoWay}" />
+                        <TextBlock Grid.Column="3" Text="{Binding Sentiment, Mode=TwoWay}" />
+                        <TextBlock Grid.Column="4" Text="{Binding Evidence, Mode=TwoWay}" />
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

@@ -103,6 +103,7 @@ namespace SalienceThemes.ViewModels
         public void ClearExecute()
         {
             DataPath = LicensePath = InputText = String.Empty;
+            _themes.Clear();
         }
 
         public bool CanClearExecute()
@@ -119,13 +120,14 @@ namespace SalienceThemes.ViewModels
         #region ProcessButton
         public void ProcessExecute()
         {
+            _themes.Clear();
             int nRet = Engine.PrepareText(InputText);
             if (nRet == 0)
             {
                 List<SalienceTheme> myThemes = Engine.GetDocumentThemes(String.Empty);
                 foreach (SalienceTheme aTheme in myThemes)
                 {
-                    _themes.Add(new Theme(aTheme.sTheme, aTheme.fScore, aTheme.nThemeType, aTheme.fSentiment, aTheme.nEvidence));
+                    _themes.Add(new Theme(aTheme.sNormalizedTheme, aTheme.fScore, aTheme.nThemeType, aTheme.fSentiment, aTheme.nEvidence));
                 }
             }
             else
