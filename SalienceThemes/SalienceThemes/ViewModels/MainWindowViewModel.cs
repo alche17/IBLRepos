@@ -25,7 +25,7 @@ namespace SalienceThemes.ViewModels
             }
             catch (SalienceException e)
             {
-                // not sure how to handle this yet
+                //not sure how to handle this yet
             }
         }
 
@@ -90,12 +90,14 @@ namespace SalienceThemes.ViewModels
         }
         #endregion
 
+        #region PropertyChangedHandler
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void RaisePropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        #endregion
 
         #region ClearButton
         public void ClearExecute()
@@ -114,7 +116,8 @@ namespace SalienceThemes.ViewModels
         }
         #endregion
 
-        public void AnalyseText()
+        #region ProcessButton
+        public void ProcessExecute()
         {
             int nRet = Engine.PrepareText(InputText);
             if (nRet == 0)
@@ -122,13 +125,25 @@ namespace SalienceThemes.ViewModels
                 List<SalienceTheme> myThemes = Engine.GetDocumentThemes(String.Empty);
                 foreach (SalienceTheme aTheme in myThemes)
                 {
-
+                    _themes.Add(new Theme(aTheme.sTheme, aTheme.fScore, aTheme.nThemeType, aTheme.fSentiment, aTheme.nEvidence));
                 }
-             }
+            }
             else
             {
                 // there was an error, in which case this needs to be handled somehow
             }
+
         }
+
+        public bool CanProcessExecute()
+        {
+            return true;
+        }
+
+        public ICommand Process
+        {
+            get { return new RelayCommand(ProcessExecute, CanProcessExecute); }
+        }
+        #endregion
     }
 }

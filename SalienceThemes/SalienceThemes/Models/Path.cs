@@ -3,8 +3,8 @@ namespace SalienceThemes.Models
 {
     public class Path
     {
-        string _licensePath;
-        string _dataPath;
+        protected static string _licensePath;
+        protected static string _dataPath;
 
         public string LicensePath
         {

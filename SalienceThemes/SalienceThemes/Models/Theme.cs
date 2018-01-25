@@ -11,22 +11,19 @@ namespace SalienceThemes.Models
 
         private void loadData()
         {
-            this.Add(new Theme("Name 1", "Score 1", "Type 1", "Sentiment 1", "Evidence 1"));
-            this.Add(new Theme("Name 2", "Score 2", "Type 2", "Sentiment 2", "Evidence 2"));
-            this.Add(new Theme("Name 3", "Score 3", "Type 3", "Sentiment 3", "Evidence 3"));
-            this.Add(new Theme("Name 4", "Score 4", "Type 4", "Sentiment 4", "Evidence 4"));
+            // if want to create dummy data on start up
         }
     }
 
     public class Theme
     {
         private string _name;
-        private string _score;
-        private string _type;
-        private string _sentiment;
-        private string _evidence;
+        private float _score;
+        private int _type;
+        private float _sentiment;
+        private int _evidence;
 
-        public Theme(string name, string score, string type, string sentiment, string evidence)
+        public Theme(string name, float score, int type, float sentiment, int evidence)
         {
             this._name = name;
             this._score = score;
@@ -41,24 +38,24 @@ namespace SalienceThemes.Models
             set { _name = value; }
         }
 
-        public string Score
+        public float Score
         {
             get { return _score; }
             set { _score = value; }
         }
 
-        public string Type
+        public int Type
         {
             get { return _type; }
             set { _type = value; }
         }
 
-        public string Sentiment
+        public float Sentiment
         {
             get { return _sentiment; }
             set { _sentiment = value; }
         }
-        public string Evidence
+        public int Evidence
         {
             get { return _evidence; }
             set { _evidence = value; }

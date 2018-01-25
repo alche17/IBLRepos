@@ -4,13 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525"
+        MinHeight="350" MinWidth="525">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Background" Value="LightGray" />
         </Style>
     </Window.Resources>
-    <Grid Margin="10">
+    <Grid Margin="15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
@@ -84,7 +85,7 @@
         </ListBox>
 
         <!-- Buttons -->
-        <Button Margin="10" Grid.Column="3" Grid.Row="6" Name="ButtonProcess" Content="Process" />
+        <Button Margin="10" Grid.Column="3" Grid.Row="6" Name="ButtonProcess" Content="Process" Command="{Binding Process}" />
         <Button Margin="10" Grid.Column="4" Grid.Row="6" Name="ButtonClear" Content="Clear" Command="{Binding Clear}" />
     </Grid>
 </Window>
