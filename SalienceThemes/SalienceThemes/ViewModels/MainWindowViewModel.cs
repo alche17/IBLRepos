@@ -1,5 +1,6 @@
 ﻿using Lexalytics;
 using SalienceThemes.Models;
+using SalienceThemes.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,8 +17,8 @@ namespace SalienceThemes.ViewModels
 
         public MainWindowViewModel()
         {
-            _path = new Path { LicensePath = "C:/Program Files (x86)/Lexalytics/License.v5", DataPath = "C:/Program Files (x86)/Lexalytics/data" };
-            _input = new Input { InputText = "This is an example of input text, which has been hard-coded." };
+            _path = new Path { LicensePath = Strings.Label_LicensePath, DataPath = Strings.Label_DataPath };
+            _input = new Input { InputText = Strings.Label_InputText_SampleString };
             _themes = new Themes();
             try
             {
@@ -102,7 +103,7 @@ namespace SalienceThemes.ViewModels
         #region ClearButton
         public void ClearExecute()
         {
-            DataPath = LicensePath = InputText = String.Empty;
+            InputText = String.Empty;
             _themes.Clear();
         }
 
@@ -134,7 +135,6 @@ namespace SalienceThemes.ViewModels
             {
                 // there was an error, in which case this needs to be handled somehow
             }
-
         }
 
         public bool CanProcessExecute()

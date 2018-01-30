@@ -6,12 +6,7 @@ namespace SalienceThemes.Models
     {
         public Themes()
         {
-            loadData();
-        }
-
-        private void loadData()
-        {
-            // if want to create dummy data on start up
+            // Nothing yet
         }
     }
 

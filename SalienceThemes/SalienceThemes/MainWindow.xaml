@@ -3,10 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:resx="clr-namespace:SalienceThemes.Properties"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="575"
-        MinHeight="350" MinWidth="575"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="{x:Static resx:Strings.Label_Heading_SalienceThemes}" Height="700" Width="600"
+        MinHeight="700" MinWidth="600"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -14,17 +15,10 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
-    <Window.Resources>
-        <Style TargetType="TextBlock">
-            <Setter Property="Background" Value="LightGray" />
-        </Style>
-    </Window.Resources>
-    <Grid Margin="15">
+
+    <!-- Grid Definitions -->
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -33,53 +27,109 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
-        <!-- License Path Input Field -->
-        <Label Content="License Path " />
-        <TextBox Margin="0 5" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="0" Text="{Binding LicensePath}" />
 
-        <!-- Data Path Input Field -->
-        <Label Grid.Row="1" Content="Data Path " />
-        <TextBox Margin="0 5" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="1" Text="{Binding DataPath}" />
+        <!-- Salience Themes Menu Toolbar -->
+        <materialDesign:ColorZone Mode="PrimaryMid" Padding="16" Margin="0 0 0 5">
+            <StackPanel Orientation="Horizontal">
+                <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" VerticalAlignment="Center" Text="{x:Static resx:Strings.Label_Heading_SalienceThemes}">
+                </TextBlock>
+            </StackPanel>
+        </materialDesign:ColorZone>
 
-        <!-- Text Input Field -->
-        <Label Grid.Row="2" Content="Input" />
-        <TextBox Grid.ColumnSpan="5" Grid.Row="3" Text="{Binding InputText, Mode=TwoWay}" AcceptsReturn="True" TextWrapping="Wrap" />
-        
-        <!-- Themes Text Block Labels -->
-        <Label Grid.Row="4" Content="Themes" />
-        <Label Grid.Row="4" Grid.Column="1" Content="Score" />
-        <Label Grid.Row="4" Grid.Column="2" Content="Type" />
-        <Label Grid.Row="4" Grid.Column="3" Content="Sentiment" />
-        <Label Grid.Row="4" Grid.Column="4" Content="Evidence" />
+        <!-- Licensing Card -->
+        <materialDesign:Card Width="Auto" Padding="8" Margin="10 5" Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="5 10 0 0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignTitleTextBlock}" Text="{x:Static resx:Strings.Label_Heading_Licensing}">
+                    <materialDesign:PackIcon Kind="InformationOutline" />
+                </TextBlock>
+                <Separator Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
+                <!-- License Path Input Field -->
+                <Label Grid.Row="2" Content="License Path" />
+                <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Text="{Binding LicensePath}" />
+                <!-- Data Path Input Field -->
+                <Label Grid.Row="3" Content="Data Path" />
+                <TextBox Margin="5" Grid.Row="3" Grid.Column="1" Text="{Binding DataPath}" />
+            </Grid>
+        </materialDesign:Card>
 
-        <!-- Theme Property List Boxes -->
-        <ListBox Name="lbNameList" Grid.Row="5" Grid.ColumnSpan="5" ItemsSource="{Binding Themes}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding Name, Mode=TwoWay}" />
-                        <TextBlock Grid.Column="1" Text="{Binding Score, Mode=TwoWay}" />
-                        <TextBlock Grid.Column="2" Text="{Binding Type, Mode=TwoWay}" />
-                        <TextBlock Grid.Column="3" Text="{Binding Sentiment, Mode=TwoWay}" />
-                        <TextBlock Grid.Column="4" Text="{Binding Evidence, Mode=TwoWay}" />
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <!-- Text Analysis Card -->
+        <materialDesign:Card Width="Auto" Padding="8" Margin="10 5" Grid.Row="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="5 10 0 0" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignTitleTextBlock}" Text="{x:Static resx:Strings.Label_Heading_TextAnalysis}">
+                    <materialDesign:PackIcon Kind="InformationOutline" />
+                </TextBlock>
+                <Separator Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignDarkSeparator}" />
+                <!-- Text Analysis Input Field -->
+                <TextBox Grid.Row="2" Grid.ColumnSpan="3" 
+                         Style="{StaticResource MaterialDesignTextAreaTextBox}"
+                         VerticalAlignment="Top"
+                         Margin="10 10"
+                         Height="Auto"
+                         MaxHeight="250"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"
+                         materialDesign:HintAssist.Hint="Input Text"
+                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignTextAreaTextBoxEnabledComboBox}"
+                         Text="{Binding InputText,Mode=TwoWay}"/>
+                <!-- Text Analysis Buttons -->
+                <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="10" Grid.Column="1" Grid.Row="4" Name="ButtonProcess" Content="Process" Command="{Binding Process}" />
+                <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="10" Grid.Column="2" Grid.Row="4" Name="ButtonClear" Content="Clear" Command="{Binding Clear}" />
+            </Grid>
+        </materialDesign:Card>
 
-        <!-- Buttons -->
-        <Button Margin="10" Grid.Column="3" Grid.Row="6" Name="ButtonProcess" Content="Process" Command="{Binding Process}" />
-        <Button Margin="10" Grid.Column="4" Grid.Row="6" Name="ButtonClear" Content="Clear" Command="{Binding Clear}" />
+        <!-- Results Card -->
+        <materialDesign:Card Width="Auto" Padding="8" Margin="10 5" Grid.Row="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="5 10 0 0" Style="{StaticResource MaterialDesignTitleTextBlock}" Text="{x:Static resx:Strings.Label_Heading_Results}">
+                    <materialDesign:PackIcon Kind="InformationOutline" />
+                </TextBlock>
+                <Separator Grid.Row="1" Style="{StaticResource MaterialDesignDarkSeparator}" />
+                <!-- Theme Property List Boxes -->
+                <ListView Grid.Row="2" ItemsSource="{Binding Themes}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Theme" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Score}" Header="Score" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Type}" Header="Type" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Sentiment}" Header="Sentiment" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Evidence}" Header="Evidence" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </materialDesign:Card>
     </Grid>
 </Window>
