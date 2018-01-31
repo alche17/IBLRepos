@@ -59,7 +59,7 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <TextBlock Margin="5 10 0 0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignTitleTextBlock}" Text="{x:Static resx:Strings.Label_Heading_Licensing}">
-                                <materialDesign:PackIcon Kind="InformationOutline" />
+                                <materialDesign:PackIcon Margin="5 0 0 0" Kind="InformationOutline" />
                             </TextBlock>
                             <Separator Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
                             <!--License Path Input Field-->
@@ -88,7 +88,7 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Margin="5 10 0 0" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignTitleTextBlock}" Text="{x:Static resx:Strings.Label_Heading_TextAnalysis}">
-                                <materialDesign:PackIcon Kind="InformationOutline" />
+                                <materialDesign:PackIcon Margin="5 0 0 0" Kind="InformationOutline" />
                             </TextBlock>
                             <Separator Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignDarkSeparator}" />
                             <!--Text Analysis Input Field-->
@@ -127,16 +127,15 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Margin="5 10 0 0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignTitleTextBlock}" 
+                            <TextBlock Margin="5 10 0 0" Style="{StaticResource MaterialDesignTitleTextBlock}" 
                                        Text="{x:Static resx:Strings.Label_Heading_Results}">
-                                <materialDesign:PackIcon Kind="InformationOutline" />
+                                <materialDesign:PackIcon Margin="5 0 0 0" Kind="InformationOutline" />
                             </TextBlock>
                             <Separator Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
 
@@ -155,10 +154,10 @@
                             </ListView>
 
                             <!--Theme Names as Chips (for user editing)-->
-                            <TextBlock Margin="10 10 0 5" Grid.Row="2" Grid.Column="1" Style="{StaticResource MaterialDesignTitleTextBlock}">
+                            <TextBlock Margin="5 10 0 0" Grid.Column="1" Style="{StaticResource MaterialDesignTitleTextBlock}">
                                 Removing Themes
                             </TextBlock>
-                            <StackPanel Grid.Row="3" Grid.Column="1">
+                            <StackPanel Grid.Row="2" Grid.Column="1">
                                 <WrapPanel Margin="10 5 5 5">
                                     <ItemsControl Name="Themes" ItemsSource="{Binding Themes}" AlternationCount="{Binding Themes.Count}">
                                         <ItemsControl.ItemsPanel>
