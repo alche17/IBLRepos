@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace SalienceThemes.Models
 {
@@ -6,54 +7,29 @@ namespace SalienceThemes.Models
     {
         public Themes()
         {
-            // Nothing yet
         }
     }
 
     public class Theme
     {
-        private string _name;
-        private float _score;
-        private int _type;
-        private float _sentiment;
-        private int _evidence;
 
         public Theme(string name, float score, int type, float sentiment, int evidence)
         {
-            this._name = name;
-            this._score = score;
-            this._type = type;
-            this._sentiment = sentiment;
-            this._evidence = evidence;
+            Name = name;
+            Score = score;
+            Type = type;
+            Sentiment = sentiment;
+            Evidence = evidence;
         }
 
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        public string Name { get; set; }
 
-        public float Score
-        {
-            get { return _score; }
-            set { _score = value; }
-        }
+        public float Score { get; set; }
 
-        public int Type
-        {
-            get { return _type; }
-            set { _type = value; }
-        }
+        public int Type { get; set; }
 
-        public float Sentiment
-        {
-            get { return _sentiment; }
-            set { _sentiment = value; }
-        }
-        public int Evidence
-        {
-            get { return _evidence; }
-            set { _evidence = value; }
-        }
+        public float Sentiment { get; set; }
+
+        public int Evidence { get; set; }
     }
 }

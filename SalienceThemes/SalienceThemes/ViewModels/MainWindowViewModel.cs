@@ -3,6 +3,7 @@ using SalienceThemes.Models;
 using SalienceThemes.Properties;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
 
@@ -35,6 +36,13 @@ namespace SalienceThemes.ViewModels
             get { return _themes; }
             set { _themes = value; }
         }
+
+        public void Delete_Theme(Theme theme)
+        {
+            _themes.Remove(theme);
+        }
+
+        public bool HasResults => Themes.Count > 0;
 
         #region PathMembers
         public Path Path
@@ -104,7 +112,7 @@ namespace SalienceThemes.ViewModels
         public void ClearExecute()
         {
             InputText = String.Empty;
-            _themes.Clear();
+            Themes.Clear();
         }
 
         public bool CanClearExecute()
@@ -121,14 +129,14 @@ namespace SalienceThemes.ViewModels
         #region ProcessButton
         public void ProcessExecute()
         {
-            _themes.Clear();
+            Themes.Clear();
             int nRet = Engine.PrepareText(InputText);
             if (nRet == 0)
             {
                 List<SalienceTheme> myThemes = Engine.GetDocumentThemes(String.Empty);
                 foreach (SalienceTheme aTheme in myThemes)
                 {
-                    _themes.Add(new Theme(aTheme.sNormalizedTheme, aTheme.fScore, aTheme.nThemeType, aTheme.fSentiment, aTheme.nEvidence));
+                    Themes.Add(new Theme(aTheme.sNormalizedTheme, aTheme.fScore, aTheme.nThemeType, aTheme.fSentiment, aTheme.nEvidence));
                 }
             }
             else

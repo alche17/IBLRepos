@@ -15,6 +15,20 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.Resources>
+        <DataTemplate x:Key="ArrowUp">
+            <DockPanel>
+                <TextBlock HorizontalAlignment="Center" Text="{Binding}" />
+                <Path VerticalAlignment="Center" Fill="Black" Data="M 5,5 15,5 10,0 5,5" />
+            </DockPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="ArrowDown">
+            <DockPanel>
+                <TextBlock HorizontalAlignment="Center" Text="{Binding}" />
+                <Path VerticalAlignment="Center" Fill="Black" Data="M 5,0 10,5 15,0 5,0" />
+            </DockPanel>
+        </DataTemplate>
+    </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -44,20 +58,18 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
                             <TextBlock Margin="5 10 0 0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignTitleTextBlock}" Text="{x:Static resx:Strings.Label_Heading_Licensing}">
-                            <materialDesign:PackIcon Kind="InformationOutline" />
+                                <materialDesign:PackIcon Kind="InformationOutline" />
                             </TextBlock>
                             <Separator Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
                             <!--License Path Input Field-->
-                            <Label Grid.Row="2" Content="License Path" />
-                            <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Text="{Binding LicensePath}" />
+                            <TextBox Margin="5" Grid.Row="2" Text="{Binding LicensePath}" 
+                                     materialDesign:HintAssist.Hint="Floating hint in a box"
+                                     Style="{StaticResource MaterialDesignTextFieldBoxTextBox}" />
                             <!--Data Path Input Field-->
-                            <Label Grid.Row="3" Content="Data Path" />
-                            <TextBox Margin="5" Grid.Row="3" Grid.Column="1" Text="{Binding DataPath}" />
+                            <TextBox Margin="5" Grid.Row="3" Text="{Binding DataPath}" 
+                                     materialDesign:HintAssist.Hint="Floating hint in a box"
+                                     Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"/>
                         </Grid>
                     </materialDesign:Card>
 
@@ -81,9 +93,9 @@
                             <Separator Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignDarkSeparator}" />
                             <!--Text Analysis Input Field-->
                             <TextBox Grid.Row="2" Grid.ColumnSpan="3" 
-                                     Style="{StaticResource MaterialDesignTextAreaTextBox}"
+                                     Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
                                      VerticalAlignment="Top"
-                                     Margin="10 10"
+                                     Margin="5 5"
                                      Height="140"
                                      AcceptsReturn="True"
                                      TextWrapping="Wrap"
@@ -99,6 +111,18 @@
 
                     <!--Results Card-->
                     <materialDesign:Card Padding="8" Margin="10 5 10 10">
+                        <materialDesign:Card.Style>
+                            <Style TargetType="materialDesign:Card">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding HasResults}" Value="False">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding HasResults}" Value="True">
+                                        <Setter Property="Visibility" Value="Hidden" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </materialDesign:Card.Style>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -110,13 +134,15 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Margin="5 10 0 0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignTitleTextBlock}" Text="{x:Static resx:Strings.Label_Heading_Results}">
+                            <TextBlock Margin="5 10 0 0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignTitleTextBlock}" 
+                                       Text="{x:Static resx:Strings.Label_Heading_Results}">
                                 <materialDesign:PackIcon Kind="InformationOutline" />
                             </TextBlock>
                             <Separator Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
 
                             <!--Theme Property List Boxes-->
-                            <ListView Name="ThemeTable" VerticalAlignment="Top" MaxHeight="300" Grid.Row="2" Grid.RowSpan="2" ItemsSource="{Binding Themes}">
+                            <ListView x:Name="ThemesTable" GridViewColumnHeader.Click="ThemeListViewClick" VerticalAlignment="Top" 
+                                      MaxHeight="300" Grid.Row="2" Grid.RowSpan="2" ItemsSource="{Binding Themes}">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Theme" />
@@ -134,7 +160,7 @@
                             </TextBlock>
                             <StackPanel Grid.Row="3" Grid.Column="1">
                                 <WrapPanel Margin="10 5 5 5">
-                                    <ItemsControl Name="Themes" ItemsSource="{Binding Themes}">
+                                    <ItemsControl Name="Themes" ItemsSource="{Binding Themes}" AlternationCount="{Binding Themes.Count}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <WrapPanel />
@@ -142,7 +168,11 @@
                                         </ItemsControl.ItemsPanel>
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                                <materialDesign:Chip Margin="2" Content="{Binding Name}" IsDeletable="True">
+                                                <materialDesign:Chip Margin="2" 
+                                                                     Content="{Binding Name, Mode=TwoWay}"
+                                                                     Tag="{Binding Theme}"
+                                                                     IsDeletable="True"
+                                                                     DeleteClick="ThemeChip_OnDeleteClick">
                                                 </materialDesign:Chip>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>

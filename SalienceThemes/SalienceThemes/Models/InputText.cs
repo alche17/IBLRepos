@@ -3,12 +3,10 @@ namespace SalienceThemes.Models
 {
     public class Input
     {
-        string _inputText;
-
-        public string InputText
+        public Input()
         {
-            get { return _inputText; }
-            set { _inputText = value; }
         }
+
+        public string InputText { get; set; }
     }
 }
