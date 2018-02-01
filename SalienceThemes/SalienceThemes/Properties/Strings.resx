@@ -123,8 +123,14 @@
   <data name="Label_Heading_Licensing" xml:space="preserve">
     <value>Licensing</value>
   </data>
-  <data name="Label_Heading_Results" xml:space="preserve">
-    <value>Results</value>
+  <data name="Label_Heading_Results_NamedEntities" xml:space="preserve">
+    <value>Named Entities</value>
+  </data>
+  <data name="Label_Heading_Results_Summary" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="Label_Heading_Results_Themes" xml:space="preserve">
+    <value>Themes</value>
   </data>
   <data name="Label_Heading_SalienceThemes" xml:space="preserve">
     <value>Salience Themes</value>
@@ -133,15 +139,47 @@
     <value>Text Analysis</value>
   </data>
   <data name="Label_InputText_SampleString" xml:space="preserve">
-    <value>Australia is set to welcome a brand new national payments system within the next two weeks, but the instant transfers system could bring with it an elevated risk of cyber fraud.
+    <value>"For the last year we have sought to restore the bonds of trust between our citizens and their government," Donald Trump told the joint houses of Congress.
 
-The New Payments Platform (NPP), set to be unveiled in early-to-mid February, will do away with the days of waiting up to three days for a bank transaction to be finalised, but also puts more pressure on login and password security, an industry expert has warned.
+"Americans love their country. And they deserve a government that shows them the same love and loyalty in return."
 
-The system will allow Australians to create a “payment ID” using their phone number, email or ABN, giving way to instantly-received payments and associated details.
+Mr Trump's supporters, with their ingrained distrust of the so-called Washington elite, will no doubt wholeheartedly agree.
 
-But the head of fraud and identity at global information services company Experian, Jon Malone, questions the ability of banks to intervene in the real-time processing of transactions that may be fraudulent.</value>
+But the President faces deep trust issues with the electorate, after a year in which he's repeatedly attacked his allies and members of his own party, and undermined his own intelligence agencies who are investigating Russian meddling in the 2016 election and possible collusion by the Trump campaign.
+
+The Congressional Black Caucus remained seated and unmoved when he referenced black unemployment.
+
+"Unemployment claims have hit a 45-year low," he said.
+
+"African-American unemployment stands at the lowest rate ever recorded, and Hispanic American unemployment has also reached the lowest levels in history."
+
+African American unemployment has been falling since 2010 but remains at around twice that of white unemployment.
+
+Fourteen Democrats boycotted the address. Many wore black to support victims of sexual harassment, others invited Dreamers — young, undocumented Americans that the President ended protection for last year.
+
+On that, the President called for bipartisan immigration reform, allowing Dreamers a path to citizenship in return for tighter borders. When he called for an end to so-called "chain migration" through tighter family reunification policies, he was jeered.</value>
   </data>
   <data name="Label_LicensePath" xml:space="preserve">
     <value>C:/Program Files (x86)/Lexalytics/License.v5</value>
+  </data>
+  <data name="ToolTip_Heading_Licensing" xml:space="preserve">
+    <value>License Path: Direct to License.v5 file installed with Lexalytics
+Data Path: Direct to data folder instaleld with Lexalytics</value>
+  </data>
+  <data name="ToolTip_Heading_Results_NamedEntities" xml:space="preserve">
+    <value>Need to write</value>
+  </data>
+  <data name="ToolTip_Heading_Results_Summary" xml:space="preserve">
+    <value>Need to write</value>
+  </data>
+  <data name="ToolTip_Heading_Results_Themes" xml:space="preserve">
+    <value>Theme: Name of the theme
+Type: If meta-theme (1), else (0)
+Score: Measure of strength of the theme 
+Sentiment: Measure of sentiment towards theme (-1=negative, 0=neutral, 1=positive)
+Evidence: A measure (1-7) of how many sentiment phrases were used to determine sentiment value</value>
+  </data>
+  <data name="ToolTip_Heading_TextAnalysis" xml:space="preserve">
+    <value>Enter into the field below and click process once finished to analyse your text</value>
   </data>
 </root>

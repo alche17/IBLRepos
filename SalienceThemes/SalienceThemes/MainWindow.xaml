@@ -16,6 +16,20 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-        <ContentControl x:Name="ActiveItem" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--Salience Themes Menu Toolbar-->
+        <materialDesign:ColorZone Mode="PrimaryMid" Padding="10">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource MaterialDesignHeadlineTextBlock}" VerticalAlignment="Center" Text="{x:Static resx:Strings.Label_Heading_SalienceThemes}">
+                </TextBlock>
+            </StackPanel>
+        </materialDesign:ColorZone>
+
+        <!-- Page content depends on view -->
+        <ContentControl Grid.Row="1" x:Name="ActiveItem" />
     </Grid>
 </Window>

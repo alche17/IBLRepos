@@ -14,12 +14,17 @@ namespace SalienceThemes.ViewModels
         private Salience Engine = null;
         private Input _input;
         private Themes _themes;
+        private NamedEntities _namedEntities;
+        private Summary _summary;
+        private int _theValue;
 
         public TextAnalysisViewModel()
         {
             _path = new Path { LicensePath = Strings.Label_LicensePath, DataPath = Strings.Label_DataPath };
             _input = new Input { InputText = Strings.Label_InputText_SampleString };
             _themes = new Themes();
+            _summary = new Summary();
+            _namedEntities = new NamedEntities();
             try
             {
                 Engine = new Salience(Path.LicensePath, Path.DataPath);
@@ -34,6 +39,31 @@ namespace SalienceThemes.ViewModels
         {
             get { return _themes; }
             set { _themes = value; }
+        }
+
+        public NamedEntities NamedEntities
+        {
+            get { return _namedEntities; }
+            set { _namedEntities = value; }
+        }
+
+        public Summary Summary
+        {
+            get { return _summary; }
+            set { _summary = value; }
+        }
+
+        public int TheValue
+        {
+            get { return _theValue; }
+            set
+            {
+                if (_theValue == value)
+                {
+                    return;
+                }
+                _theValue = value;
+            }
         }
 
         public void Delete_Theme(Theme theme)
@@ -132,11 +162,23 @@ namespace SalienceThemes.ViewModels
             int nRet = Engine.PrepareText(InputText);
             if (nRet == 0)
             {
+                // Get themes
                 List<SalienceTheme> myThemes = Engine.GetDocumentThemes(String.Empty);
                 foreach (SalienceTheme aTheme in myThemes)
                 {
                     Themes.Add(new Theme(aTheme.sNormalizedTheme, aTheme.fScore, aTheme.nThemeType, aTheme.fSentiment, aTheme.nEvidence));
                 }
+
+                // Get named entities
+                List<SalienceEntity> myEntities = Engine.GetNamedEntities(String.Empty);
+                foreach (SalienceEntity anEntity in myEntities)
+                {
+                    NamedEntities.Add(new NamedEntity(anEntity.sNormalizedForm, anEntity.sType, anEntity.fSentimentScore, anEntity.nEvidence, anEntity.nCount));
+                }
+
+                // Get summary
+                SalienceSummary mySummary = Engine.GetSummary(3, String.Empty);
+                Summary.SummaryText = mySummary.sSummary;
             }
             else
             {

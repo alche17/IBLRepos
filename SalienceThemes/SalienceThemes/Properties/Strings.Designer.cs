@@ -79,11 +79,29 @@ namespace SalienceThemes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Results.
+        ///   Looks up a localized string similar to Named Entities.
         /// </summary>
-        public static string Label_Heading_Results {
+        public static string Label_Heading_Results_NamedEntities {
             get {
-                return ResourceManager.GetString("Label_Heading_Results", resourceCulture);
+                return ResourceManager.GetString("Label_Heading_Results_NamedEntities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summary.
+        /// </summary>
+        public static string Label_Heading_Results_Summary {
+            get {
+                return ResourceManager.GetString("Label_Heading_Results_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Themes.
+        /// </summary>
+        public static string Label_Heading_Results_Themes {
+            get {
+                return ResourceManager.GetString("Label_Heading_Results_Themes", resourceCulture);
             }
         }
         
@@ -106,11 +124,13 @@ namespace SalienceThemes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Australia is set to welcome a brand new national payments system within the next two weeks, but the instant transfers system could bring with it an elevated risk of cyber fraud.
+        ///   Looks up a localized string similar to &quot;For the last year we have sought to restore the bonds of trust between our citizens and their government,&quot; Donald Trump told the joint houses of Congress.
         ///
-        ///The New Payments Platform (NPP), set to be unveiled in early-to-mid February, will do away with the days of waiting up to three days for a bank transaction to be finalised, but also puts more pressure on login and password security, an industry expert has warned.
+        ///&quot;Americans love their country. And they deserve a government that shows them the same love and loyalty in return.&quot;
         ///
-        ///The system will allow Australians to create a “payment ID” using [rest of string was truncated]&quot;;.
+        ///Mr Trump&apos;s supporters, with their ingrained distrust of the so-called Washington elite, will no doubt wholeheartedly agree.
+        ///
+        ///But the President faces deep trust issues with the electorate, after a year in which he&apos;s repeatedly attacke [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Label_InputText_SampleString {
             get {
@@ -124,6 +144,56 @@ namespace SalienceThemes.Properties {
         public static string Label_LicensePath {
             get {
                 return ResourceManager.GetString("Label_LicensePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to License Path: Direct to License.v5 file installed with Lexalytics
+        ///Data Path: Direct to data folder instaleld with Lexalytics.
+        /// </summary>
+        public static string ToolTip_Heading_Licensing {
+            get {
+                return ResourceManager.GetString("ToolTip_Heading_Licensing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Need to write.
+        /// </summary>
+        public static string ToolTip_Heading_Results_NamedEntities {
+            get {
+                return ResourceManager.GetString("ToolTip_Heading_Results_NamedEntities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Need to write.
+        /// </summary>
+        public static string ToolTip_Heading_Results_Summary {
+            get {
+                return ResourceManager.GetString("ToolTip_Heading_Results_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme: Name of the theme
+        ///Type: If meta-theme (1), else (0)
+        ///Score: Measure of strength of the theme 
+        ///Sentiment: Measure of sentiment towards theme (-1=negative, 0=neutral, 1=positive)
+        ///Evidence: A measure (1-7) of how many sentiment phrases were used to determine sentiment value.
+        /// </summary>
+        public static string ToolTip_Heading_Results_Themes {
+            get {
+                return ResourceManager.GetString("ToolTip_Heading_Results_Themes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter into the field below and click process once finished to analyse your text.
+        /// </summary>
+        public static string ToolTip_Heading_TextAnalysis {
+            get {
+                return ResourceManager.GetString("ToolTip_Heading_TextAnalysis", resourceCulture);
             }
         }
     }
