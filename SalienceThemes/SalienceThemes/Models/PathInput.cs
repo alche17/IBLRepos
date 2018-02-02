@@ -1,9 +1,9 @@
 ﻿
 namespace SalienceThemes.Models
 {
-    public class Path
+    public class PathInput
     {
-        public Path()
+        public PathInput()
         {
         }
 

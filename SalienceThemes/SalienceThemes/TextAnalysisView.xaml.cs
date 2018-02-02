@@ -23,6 +23,18 @@ namespace SalienceThemes
             DataContext = _textAnalysisViewModel;
         }
 
+        private void InputToggleClick(object sender, RoutedEventArgs e)
+        {
+            RadioButton radioButton = (RadioButton)sender;
+            _textAnalysisViewModel.TextToAnalyse = _textAnalysisViewModel.InputText;
+        }
+
+        private void ImportToggleClick(object sender, RoutedEventArgs e)
+        {
+            RadioButton radioButton = (RadioButton)sender;
+            _textAnalysisViewModel.TextToAnalyse = _textAnalysisViewModel.ImportText;
+        }
+
         private void ThemeChip_OnDeleteClick(object sender, RoutedEventArgs e)
         {
             Chip themeChip = (Chip)sender;
@@ -33,6 +45,7 @@ namespace SalienceThemes
         private ListSortDirection _sortDirection;
         private GridViewColumnHeader _sortColumn;
 
+        // Clicking on theme list view columns sorts the table
         private void ThemeListViewClick(object sender, RoutedEventArgs e)
         {
             GridViewColumnHeader column = e.OriginalSource as GridViewColumnHeader;

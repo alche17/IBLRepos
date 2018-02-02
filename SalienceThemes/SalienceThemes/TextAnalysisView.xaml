@@ -46,11 +46,11 @@
                         <Separator Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
                         <!--License Path Input Field-->
                         <TextBox Margin="5" Grid.Row="2" Text="{Binding LicensePath}" 
-                                 materialDesign:HintAssist.Hint="Floating hint in a box"
+                                 materialDesign:HintAssist.Hint="License Path"
                                  Style="{StaticResource MaterialDesignTextFieldBoxTextBox}" />
                         <!--Data Path Input Field-->
                         <TextBox Margin="5" Grid.Row="3" Text="{Binding DataPath}" 
-                                 materialDesign:HintAssist.Hint="Floating hint in a box"
+                                 materialDesign:HintAssist.Hint="Data Path"
                                  Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"/>
                     </Grid>
                 </materialDesign:Card>
@@ -63,17 +63,22 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock ToolTip="{x:Static resx:Strings.ToolTip_Heading_TextAnalysis}" HorizontalAlignment="Left" Margin="5 10 0 0" Style="{StaticResource MaterialDesignTitleTextBlock}" Text="{x:Static resx:Strings.Label_Heading_TextAnalysis}">
+                        <TextBlock Grid.ColumnSpan="2" ToolTip="{x:Static resx:Strings.ToolTip_Heading_TextAnalysis}" HorizontalAlignment="Left" Margin="5 10 0 0" Style="{StaticResource MaterialDesignTitleTextBlock}" Text="{x:Static resx:Strings.Label_Heading_TextAnalysis}">
                         </TextBlock>
-                        <Separator Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignDarkSeparator}" />
+                        <Separator Grid.Row="1" Grid.ColumnSpan="5" Style="{StaticResource MaterialDesignDarkSeparator}" />
                         <!--Text Analysis Input Field-->
-                        <TextBox Grid.Row="2" Grid.ColumnSpan="3" 
+                        <RadioButton Grid.Row="2" GroupName="XXX" x:Name="InputEnabled" IsChecked="True" Click="InputToggleClick" />
+                        <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" 
                                  Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
                                  VerticalAlignment="Top"
                                  Margin="5 5"
@@ -82,11 +87,14 @@
                                  TextWrapping="Wrap"
                                  VerticalScrollBarVisibility="Auto"
                                  materialDesign:HintAssist.Hint="Input Text"
-                                 IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignTextAreaTextBoxEnabledComboBox}"
+                                 IsEnabled="{Binding Path=IsChecked, ElementName=InputEnabled}"
                                  Text="{Binding InputText,Mode=TwoWay}"/>
+                        <RadioButton Grid.Row="3" GroupName="XXX" x:Name="ImportEnabled" Click="ImportToggleClick" />
+                        <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="10" Grid.Column="1" Grid.Row="3" x:Name="ButtonImport" Content="Import" Command="{Binding ImportFile}" IsEnabled="{Binding IsChecked, ElementName=ImportEnabled}" />
+                        <TextBlock VerticalAlignment="Center" Grid.Column="2" Grid.Row="3" Text="{Binding ImportFileName}" />
                         <!--Text Analysis Buttons-->
-                        <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="10" Grid.Column="1" Grid.Row="3" Name="ButtonProcess" Content="Process" Command="{Binding Process}" />
-                        <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="10" Grid.Column="2" Grid.Row="3" Name="ButtonClear" Content="Clear" Command="{Binding Clear}" />
+                        <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="10" Grid.Column="3" Grid.Row="4" x:Name="ButtonProcess" Content="Process" Command="{Binding Process}" />
+                        <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="10" Grid.Column="4" Grid.Row="4" x:Name="ButtonClear" Content="Clear" Command="{Binding Clear}" />
                     </Grid>
                 </materialDesign:Card>
 

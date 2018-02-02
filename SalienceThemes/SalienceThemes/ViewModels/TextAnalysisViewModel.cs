@@ -4,30 +4,35 @@ using SalienceThemes.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Windows.Input;
 
 namespace SalienceThemes.ViewModels
 {
     class TextAnalysisViewModel : INotifyPropertyChanged
     {
-        private Path _path;
+        private PathInput _pathInput;
         private Salience Engine = null;
         private Input _input;
         private Themes _themes;
         private NamedEntities _namedEntities;
         private Summary _summary;
+        private Import _import;
         private int _theValue;
+        private string _textToAnalyse;
 
         public TextAnalysisViewModel()
         {
-            _path = new Path { LicensePath = Strings.Label_LicensePath, DataPath = Strings.Label_DataPath };
+            _pathInput = new PathInput { LicensePath = Strings.Label_LicensePath, DataPath = Strings.Label_DataPath };
             _input = new Input { InputText = Strings.Label_InputText_SampleString };
             _themes = new Themes();
             _summary = new Summary();
             _namedEntities = new NamedEntities();
+            _import = new Import();
+            _textToAnalyse = InputText;
             try
             {
-                Engine = new Salience(Path.LicensePath, Path.DataPath);
+                Engine = new Salience(PathInput.LicensePath, PathInput.DataPath);
             }
             catch (SalienceException e)
             {
@@ -53,18 +58,33 @@ namespace SalienceThemes.ViewModels
             set { _summary = value; }
         }
 
+        #region Getters and Setters
         public int TheValue
         {
             get { return _theValue; }
             set
             {
-                if (_theValue == value)
+                if (_theValue != value)
                 {
-                    return;
+                    _theValue = value;
+                    RaisePropertyChanged("ImportFileName");
                 }
-                _theValue = value;
             }
         }
+
+        public string TextToAnalyse
+        {
+            get { return _textToAnalyse; }
+            set
+            {
+                if (_textToAnalyse != value)
+                {
+                    _textToAnalyse = value;
+                    RaisePropertyChanged("ImportFileName");
+                }
+            }
+        }
+        #endregion
 
         public void Delete_Theme(Theme theme)
         {
@@ -73,21 +93,55 @@ namespace SalienceThemes.ViewModels
 
         public bool HasResults => Themes.Count > 0;
 
-        #region PathMembers
-        public Path Path
+        #region ImportMembers
+        public Import Import
         {
-            get { return _path; }
-            set { _path = value; }
+            get { return _import; }
+            set { _import = value; }
+        }
+
+        public string ImportText
+        {
+            get { return Import.ImportText; }
+            set
+            {
+                if (Import.ImportText != value)
+                {
+                    Import.ImportText = value;
+                    RaisePropertyChanged("ImportText");
+                }
+            }
+        }
+
+        public string ImportFileName
+        {
+            get { return Import.ImportFileName; }
+            set
+            {
+                if (Import.ImportFileName != value)
+                {
+                    Import.ImportFileName = value;
+                    RaisePropertyChanged("ImportFileName");
+                }
+            }
+        }
+        #endregion
+
+        #region PathMembers
+        public PathInput PathInput
+        {
+            get { return _pathInput; }
+            set { _pathInput = value; }
         }
 
         public string LicensePath
         {
-            get { return Path.LicensePath; }
+            get { return PathInput.LicensePath; }
             set
             {
-                if (Path.LicensePath != value)
+                if (PathInput.LicensePath != value)
                 {
-                    Path.LicensePath = value;
+                    PathInput.LicensePath = value;
                     RaisePropertyChanged("LicensePath");
                 }
             }
@@ -95,12 +149,12 @@ namespace SalienceThemes.ViewModels
 
         public string DataPath
         {
-            get { return Path.DataPath; }
+            get { return PathInput.DataPath; }
             set
             {
-                if (Path.DataPath != value)
+                if (PathInput.DataPath != value)
                 {
-                    Path.DataPath = value;
+                    PathInput.DataPath = value;
                     RaisePropertyChanged("DataPath");
                 }
             }
@@ -159,7 +213,7 @@ namespace SalienceThemes.ViewModels
         public void ProcessExecute()
         {
             Themes.Clear();
-            int nRet = Engine.PrepareText(InputText);
+            int nRet = Engine.PrepareText(TextToAnalyse);
             if (nRet == 0)
             {
                 // Get themes
@@ -194,6 +248,39 @@ namespace SalienceThemes.ViewModels
         public ICommand Process
         {
             get { return new RelayCommand(ProcessExecute, CanProcessExecute); }
+        }
+        #endregion
+
+        #region ImportButton
+        public void ImportExecute()
+        {
+            // Create dialog only filtering text files
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
+            {
+                DefaultExt = ".txt",
+                Filter = "Text Document (*.txt)|*.txt"
+            };
+
+            // Display dialog
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Get selected file name and extract into a string
+            if (result == true)
+            {
+                ImportFileName = dlg.FileName;
+                ImportText = File.ReadAllText(ImportFileName);
+                TextToAnalyse = ImportText;
+            }
+         }
+
+        public bool CanImportExecute()
+        {
+            return true;
+        }
+
+        public ICommand ImportFile
+        {
+            get { return new RelayCommand(ImportExecute, CanImportExecute); }
         }
         #endregion
     }

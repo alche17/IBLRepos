@@ -100,6 +100,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\ImportText.cs" />
     <Compile Include="Models\InputText.cs" />
     <Compile Include="Models\NamedEntity.cs" />
     <Compile Include="Models\Summary.cs" />
@@ -132,7 +133,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Path.cs" />
+    <Compile Include="Models\PathInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
